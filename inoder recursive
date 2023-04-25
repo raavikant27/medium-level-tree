@@ -1,0 +1,24 @@
+class Solution {
+public:
+
+   void inorder(TreeNode* root,vector<int> &ans){
+       if(root!=NULL){
+         inorder(root->left,ans); 
+         ans.push_back(root->val);
+         inorder(root->right,ans);
+       }
+   }
+
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int>ans; //intilise the ans in vector
+       inorder(root,ans);
+        return ans;
+        }
+};
+Time Complexity: O(N).
+
+Reason: We are traversing N nodes and every node is visited exactly once.
+
+Space Complexity: O(N)
+
+Reason: Space is needed for the recursion stack. In the worst case (skewed tree), space complexity can be O(N).

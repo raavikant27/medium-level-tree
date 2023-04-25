@@ -1,0 +1,21 @@
+class Solution {
+public:
+
+    void postorder(TreeNode* root,vector<int>& ans){
+        if(root!=NULL){
+            postorder(root->left,ans);
+            postorder(root->right,ans);
+            ans.push_back(root->val);
+        }
+    }
+
+
+    vector<int> postorderTraversal(TreeNode* root) {
+      vector<int>ans;//we make a vector store the ans
+       postorder(root,ans); //call the helper funtion
+      return ans;  
+    }
+};
+Time Complexity: O(N).
+
+Space Complexity: O(N)
