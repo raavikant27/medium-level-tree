@@ -1,0 +1,27 @@
+
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        return height(root)!=-1;
+    }
+    int height(TreeNode *root){
+        if(root==NULL)return 0;
+        int leftheight=height(root->left);//call the left side throgh recusive
+        if(leftheight==-1)return -1;
+        int rightheight=height(root->right);
+        if(rightheight==-1) return -1;
+        if(abs(leftheight-rightheight)>1) return -1;
+        return max(leftheight,rightheight)+1;
+    }
+};
+approch-
+Start traversing the tree recursively and do work in Post Order.
+For each call, caculate the height of the root node, and return it to previous calls.  
+Simultaneously, in the Post Order of every node , Check for condition of balance as information of left and right subtree height is available.
+If it is balanced , simply return height of current node and if not then return -1.
+Whenever the subtree result is -1 , simply keep on returning -1.
+
+
+Time Complexity: O(N) 
+
+Space Complexity: O(1) Extra Space + O(H) Recursion Stack space (Where “H”  is the height of binary tree).
