@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool rec(TreeNode*root1,TreeNode*root2){
+        if(root1==NULL&&root2==NULL)return true;
+        if(root1==NULL||root2==NULL)return false;
+        if(root1->val!=root2->val)return false;
+        return rec(root1->left,root2->right)&&rec(root1->right,root2->left);
+    }
+    bool isSymmetric(TreeNode* root) {
+        if(root==NULL)return true;
+        return rec(root->left,root->right);
+
+    }
+};
+
+The algorithm steps can be summarized as follows::
+
+ 1-We take two variables root1 and root2 initially both pointing to the root.
+ 2-Then we use any tree traversal to traverse the nodes. We will simultaneously change root1 and root2 in this traversal function.
+ 3-For the base case, if both are pointing to NULL, we return true, whereas if only one points to NULL and other to a node, we return false.
+4-If both points to a node, we first compare their value, if it is the same we check for the lower levels of the tree.
+5-We recursively call the function to check the root1’s left child with root2’s right child; then we again recursively check the root1’s right child with root2’s left child.
+6-When all three conditions ( node values of left and right and two recursive calls) return true, we return true from our function else we return false.
+
+Time Complexity: O(N)
+
+Reason: We are doing simple tree traversal and changing both root1 and root2 simultaneously.
+
+Space Complexity: O(N)
+
+Reason: In the worst case (skewed tree), space complexity can be O(N).
